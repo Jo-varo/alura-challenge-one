@@ -4,10 +4,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Alura Challenge 1</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <header></header>
+    <main class="container">
+      <div class="content col-logo"><img class="logo" /></div>
+      <div class="content col-texto-input">
+        <form>
+          <textarea rows="10" placeholder="Ingrese el texto aqui"></textarea>
+          <div class="condition">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 15V17H13V15H11ZM11 7V13H13V7H11Z"
+                fill="#555"
+              ></path>
+            </svg>
+            <p>Solo letras minúsculas y sin acentos</p>
+          </div>
+          <div class="buttons">
+            <button class="btn btn-encrypt">Encriptar</button>
+            <button class="btn btn-decrypt">Desencriptar</button>
+          </div>
+        </form>
+      </div>
+      <div class="content col-texto-output">
+        <img class="img-placeholder" />
+        <h3>Ningún mensaje fue encontrado</h3>
+        <p>Ingresa el texto que deseas encriptar o desencriptar</p>
+        <button class="btn btn-copy">Copiar</button>
+      </div>
+    </main>
+
     <script src="logic.js"></script>
+    <script type="module" src="helpers.js"></script>
   </body>
 </html>

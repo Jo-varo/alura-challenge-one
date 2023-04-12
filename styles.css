@@ -1,3 +1,160 @@
-html{
-  background: black;
+/* Variables */
+:root {
+  --dark-blue-100: #609ed4;
+  --dark-blue-200: #356ea9;
+  --dark-blue-300: #0a3871;
+  --dark-blue-400: #072b61;
+  --dark-blue-500: #052051;
+
+  --light-blue-100: #f3f5fc;
+  --light-blue-200: #eff1fa;
+  --light-blue-300: #e9ecf8;
+  --light-blue-400: #aab2d5;
+  --light-blue-500: #757fb2;
+
+  --gray-100: #ced4da;
+  --gray-200: #adb5bd;
+  --gray-300: #868e96;
+  --gray-400: #495057;
+  --gray-500: #343a40;
+}
+
+/* General styles */
+body {
+  max-width: 1440px;
+  margin: 40px auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  background: var(--light-blue-100);
+  box-sizing: border-box;
+}
+
+.img-placeholder {
+  height: 300px;
+  background-color: black;
+}
+.logo {
+  height: 60px;
+  width: 60px;
+  background-color: black;
+}
+
+/* Columns */
+.container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.content {
+  padding: 50px;
+}
+
+.col-logo {
+  flex: 0.5;
+}
+
+.col-texto-input {
+  flex: 7;
+  padding-top: 100px;
+}
+
+.col-texto-output {
+  flex: 4.5;
+  background-color: cornsilk;
+  border-radius: 40px;
+  padding: 200px 10px;
+  text-align: center;
+  box-shadow: 5px 5px 20px #ddd;
+}
+
+/* Elementos HTML */
+
+textarea {
+  padding: 10px;
+  width: 100%;
+  resize: none;
+  border: 2px solid var(--gray-100);
+  border-radius: 10px;
+  background: none;
+  outline: none;
+  font-size: xx-large;
+}
+
+textarea:focus-visible {
+  border: 2px solid var(--gray-300);
+}
+
+/* Elementos personalizados */
+
+.condition {
+  background-color: var(--light-blue-300);
+  padding: 10px 5px;
+}
+
+.condition p {
+  display: inline-block;
+  font-size: medium;
+  margin: 0;
+}
+
+.condition svg {
+  vertical-align: text-bottom;
+}
+
+.buttons {
+  width: 100%;
+  text-align: center;
+  gap: 30px;
+  display: flex;
+}
+
+.btn {
+  background-color: gray;
+  border: none;
+  border-radius: 24px;
+  font-size: larger;
+  flex: 1;
+  font-weight: bold;
+  padding: 20px 0;
+}
+
+.btn-encrypt {
+  background-color: var(--dark-blue-300);
+  border: 2px solid var(--dark-blue-300);
+  color: white;
+}
+.btn-encrypt:hover {
+  background-color: var(--dark-blue-400);
+  border: 2px solid var(--dark-blue-400);
+  color: white;
+}
+
+.btn-decrypt {
+  background-color: var(--light-blue-100);;
+  border: 2px solid var(--dark-blue-300);
+  color: var(--dark-blue-300);
+}
+.btn-decrypt:hover {
+  background-color: var(--light-blue-300);
+  border: 2px solid var(--dark-blue-300);
+  color: var(--dark-blue-300);
+}
+
+.btn-copy {
+  width: 80%;
+  background-color: white;
+  border: 2px solid var(--dark-blue-300);
+  color: var(--dark-blue-300);
+}
+.btn-copy:hover {
+  background-color: var(--light-blue-200);
+  border: 2px solid var(--dark-blue-300);
+  color: var(--dark-blue-300);
+}
+
+.d-none{
+  display: none;
 }
