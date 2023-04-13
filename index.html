@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -19,7 +19,7 @@
       <div class="content col-logo"><img class="logo" /></div>
       <div class="content col-texto-input">
         <form>
-          <textarea rows="10" placeholder="Ingrese el texto aqui"></textarea>
+          <textarea rows="15" placeholder="Ingrese el texto aqui"></textarea>
           <div class="condition">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -41,14 +41,38 @@
         </form>
       </div>
       <div class="content col-texto-output">
-        <img class="img-placeholder" />
-        <h3>Ningún mensaje fue encontrado</h3>
-        <p>Ingresa el texto que deseas encriptar o desencriptar</p>
-        <button class="btn btn-copy">Copiar</button>
+        <div id="start-result">
+          <img class="img-placeholder" />
+          <h3>Ningún mensaje fue encontrado</h3>
+          <p>Ingresa el texto que deseas encriptar o desencriptar</p>
+        </div>
+        <div id="result" class="d-none">
+          <div class="result-text">
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore
+              est nihil eaque quisquam quos ut aperiam unde, culpa repellat?
+              Blanditiis pariatur unde, ex aut a nulla. Soluta aliquid eius
+              obcaecati libero nobis numquam esse reprehenderit tempore harum
+              optio ut dignissimos, distinctio voluptatem eum repellat porro
+              illum provident at. Itaque exercitationem tempora omnis aliquid
+              labore, fugiat amet aut ipsam sit est aspernatur totam cumque.
+              Ipsam praesentium placeat consectetur ullam consequatur repellat
+              unde veritatis cupiditate sunt dignissimos, quaerat, aperiam quo
+              ex aspernatur.
+            </p>
+          </div>
+          <button class="btn btn-copy">Copiar</button>
+        </div>
       </div>
     </main>
-
-    <script src="logic.js"></script>
+    <footer>
+      <div class="footer-group">
+        <hr />
+        Developed by
+        <a href="https://github.com/Jo-varo"> (Agregar logo)Jo-Varo </a>
+      </div>
+    </footer>
+    <script type="module" src="logic.js"></script>
     <script type="module" src="helpers.js"></script>
   </body>
 </html>
