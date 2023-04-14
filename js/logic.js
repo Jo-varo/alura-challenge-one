@@ -1,35 +1,66 @@
 import { encrypter, decrypter } from './helpers.js';
 
+
+//TODO: delete logs to console
+
+const textStatus = {
+  valid: 'valid-text',
+  invalid: 'invalid-text',
+  empty: 'empty-text',
+};
+
+const textStates = {
+  'valid-text': {
+    value: true,
+    userMsg: 'Texto valido',
+  },
+  'invalid-text': {
+    value: false,
+    userMsg: 'Escribe texto válido cumpliendo las condiciones',
+  },
+  'empty-text': {
+    value: false,
+    userMsg: 'Escribe algunas palabras para encriptarlas',
+  },
+};
+
 const stopSubmit = () => {
   const form = document.querySelector('form');
   form.onsubmit = (e) => e.preventDefault();
 };
 
-// Functines managing texts
+// Functions managing texts
 const checkText = (text = '') => {
-  // TODO: "ERROR: INGRESA TEXTO"  "ERROR: INGRESA TEXTO CON LAS CONDICIONES"
   //Avoid "catastrophic backtracking"
-  if (!text) return false;
+  if (!text) return textStatus['empty'];
+  const newText = cleanText(text);
+  if (!newText) return textStatus['empty'];
   const myRegex = /^[a-z]+$/;
-  const words = text.split(/\s+/);
+  const words = newText.split(/\s+/);
   for (const word of words) {
-    if (word && !myRegex.test(word)) return false;
+    if (word && !myRegex.test(word)) return textStatus['invalid'];
   }
-  return true;
+  return textStatus['valid'];
 };
 
 const cleanText = (text = '') => {
-  let newText = text.split(/\s+/);
-  if (newText[newText.length - 1] === '') newText.pop();
+  let newText = text.split(/\s+/).filter((elm) => elm != '');
   return newText.join(' ');
 };
 
 const getText = () => {
   const text = document.querySelector('textarea').value;
-  if (checkText(text)) {
+  const resultCheckText = checkText(text);
+  const isValidText = textStates[resultCheckText].value;
+  if (isValidText) {
     return cleanText(text);
   } else {
-    alert('Texto invalido');
+    if (resultCheckText === textStatus['invalid']) {
+      alert(textStates[resultCheckText].userMsg);
+    }
+    if (resultCheckText === textStatus['empty']) {
+      alert(textStates[resultCheckText].userMsg);
+    }
     return false;
   }
 };
@@ -63,8 +94,11 @@ const getParagraphResult = () => {
   return document.getElementsByClassName('result-text')[0].children[0];
 };
 
+const writeResult = (elementP, text = '') => {
+  elementP.innerText = text;
+};
+
 const hideStartResult = () => {
-  //TODO: Probar ingresando el estilo al html .style.display
   const startResult = document.getElementById('start-result');
   const result = document.getElementById('result');
 
@@ -75,7 +109,7 @@ const hideStartResult = () => {
 };
 
 // Button events
-const btnFunctions = () => {
+const btnsCryptLogic = () => {
   const text = getText();
   if (!text) return;
   hideStartResult();
@@ -83,19 +117,20 @@ const btnFunctions = () => {
   return { text, paragraphResult };
 };
 
-const writeResult = (elementP, text = '') => {
-  elementP.innerText = text;
-};
-
 const clickBtnEncrypt = (e) => {
-  //TODO: FIX ERROR at click empty text
-  const { text, paragraphResult } = btnFunctions();
+  const objResult = btnsCryptLogic();
+  if (!objResult) return;
+
+  const { text, paragraphResult } = objResult;
   const result = encrypter(text);
   writeResult(paragraphResult, result);
 };
 
 const clickBtnDecrypt = (e) => {
-  const { text, paragraphResult } = btnFunctions();
+  const objResult = btnsCryptLogic();
+  if (!objResult) return;
+
+  const { text, paragraphResult } = objResult;
   const result = decrypter(text);
   writeResult(paragraphResult, result);
 };
@@ -104,7 +139,17 @@ const clickBtnCopy = (e) => {
   const paragraphResult = getParagraphResult();
   const result = paragraphResult.textContent;
   navigator.clipboard.writeText(result);
-  alert('texto copiado');
+  const { btnCopy } = getButtons();
+
+  btnCopy.innerText = 'Copiado';
+  btnCopy.disabled = true;
+  btnCopy.classList.add('copied')
+
+  setTimeout(() => {
+    btnCopy.innerText = 'Copiar';
+    btnCopy.disabled = false;
+    btnCopy.classList.remove('copied');
+  }, 1500);
 };
 
 const addButtonEvents = () => {
@@ -114,15 +159,15 @@ const addButtonEvents = () => {
   btnCopy.onclick = clickBtnCopy;
 };
 
+// textarea enter event
 const enterTextarea = () => {
   const textarea = document.querySelector('textarea');
   const { btnEncrypt } = getButtons();
-  textarea.onkeyup = (e) => {
+
+  textarea.onkeydown = (e) => {
     if (e.key === 'Enter') {
-      //TODO: PREVENT NEW LINE BREAK
-      // e.preventDefault()
-      console.log(e);
       btnEncrypt.click();
+      e.preventDefault();
     }
   };
 };
