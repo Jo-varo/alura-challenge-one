@@ -1,3 +1,5 @@
+/* ICONS Remix Icon */
+
 /* Variables */
 :root {
   --dark-blue-100: #609ed4;
@@ -29,17 +31,21 @@ body {
 html {
   background: var(--light-blue-100);
   box-sizing: border-box;
+  min-height: 100vh;
+  position: relative;
 }
 
 .img-placeholder {
   height: 300px;
   width: 300px;
-  background-color: black;
 }
 .logo {
   height: 60px;
   width: 60px;
-  background-color: black;
+  border-radius: 15px;
+  font-size: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark-blue-300);
 }
 
 /* Columns */
@@ -92,6 +98,11 @@ textarea:focus-visible {
 
 textarea::placeholder {
   color: var(--dark-blue-200);
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 form {
@@ -158,11 +169,19 @@ form {
   background-color: white;
   border: 2px solid var(--dark-blue-300);
   color: var(--dark-blue-300);
+  transition: background-color 0.8s, color 0.8s;
 }
 .btn-copy:hover {
   background-color: var(--light-blue-200);
   border: 2px solid var(--dark-blue-300);
   color: var(--dark-blue-300);
+}
+
+.btn-copy.copied {
+  width: 100%;
+  background-color: var(--dark-blue-200);
+  border: 2px solid var(--dark-blue-200);
+  color: white;
 }
 
 .d-none {
@@ -175,6 +194,10 @@ form {
   margin-top: 100px;
 }
 
+#result {
+  transition: display 2s;
+}
+
 #result .result-text {
   min-height: 700px;
 }
@@ -185,11 +208,114 @@ form {
   font-weight: 500;
 }
 
+footer {
+  height: 75px;
+}
+
 .footer-group {
-  margin-top: 100px;
+  position: absolute;
+  max-width: 1440px;
+  width: 100%;
+  bottom: 0px;
   text-align: center;
+  padding: 5px 0;
 }
 
 .footer-group hr {
-  border-top: 1px solid var(--gray-100)
+  border-top: 1px solid var(--gray-100);
+}
+
+.footer-group .author-credits {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 4px;
+  background-color: var(--light-blue-300);
+  transition-property: background-color;
+  transition-duration: 1s;
+  margin-left: 5px;
+}
+.footer-group .author-credits:hover {
+  background-color: #555;
+  color: white;
+}
+
+.footer-group .author-credits img {
+  vertical-align: text-bottom;
+}
+
+.footer-group .author-credits:hover a {
+  color: white;
+}
+
+.footer-group .author-credits:hover img {
+  filter: invert(100%) sepia(1%) saturate(439%) hue-rotate(235deg)
+    brightness(120%) contrast(100%);
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    padding: 0 40px;
+  }
+
+  .logo img {
+    display: block;
+  }
+
+  .col-texto-input {
+    padding-top: unset;
+  }
+  .col-texto-output {
+    margin: 40px;
+    font-size: 20px;
+  }
+  .col-texto-output #start-result {
+    margin-top: unset;
+  }
+  .col-texto-output #result .result-text {
+    min-height: 100px;
+  }
+  .img-placeholder {
+    display: none;
+  }
+  .btn-copy {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 375px) {
+  body {
+    margin: unset;
+  }
+
+  .logo {
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .col-logo {
+    padding: unset;
+  }
+  .content {
+    padding: 0 15px;
+  }
+
+  .buttons {
+    gap: 20px;
+  }
+
+  .col-texto-output {
+    margin: 40px 15px 60px;
+  }
+
+  #start-result {
+    padding: 10px;
+  }
+  #result {
+    padding-bottom: 20px;
+  }
 }
