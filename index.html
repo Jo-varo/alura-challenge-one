@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alura Challenge 1</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Alura Challenge One</title>
+    <link rel="stylesheet" href="styles/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,9 +14,13 @@
     />
   </head>
   <body>
+    <!-- TODO: Agregar animacion fade al resultado -->
+    <!-- TODO: Cambiar el tamaño del textarea en vista responsiva -->
     <header></header>
     <main class="container">
-      <div class="content col-logo"><img class="logo" /></div>
+      <div class="content col-logo">
+        <div class="logo"><img src="assets/logo-alura.svg" alt="logo-alura"></div>
+      </div>
       <div class="content col-texto-input">
         <form>
           <textarea rows="15" placeholder="Ingrese el texto aqui"></textarea>
@@ -42,24 +46,15 @@
       </div>
       <div class="content col-texto-output">
         <div id="start-result">
-          <img class="img-placeholder" />
+          <div class="img-placeholder">
+            <img src="assets/illustration.svg" alt="A man looking a diamong"/>
+          </div>
           <h3>Ningún mensaje fue encontrado</h3>
           <p>Ingresa el texto que deseas encriptar o desencriptar</p>
         </div>
         <div id="result" class="d-none">
           <div class="result-text">
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore
-              est nihil eaque quisquam quos ut aperiam unde, culpa repellat?
-              Blanditiis pariatur unde, ex aut a nulla. Soluta aliquid eius
-              obcaecati libero nobis numquam esse reprehenderit tempore harum
-              optio ut dignissimos, distinctio voluptatem eum repellat porro
-              illum provident at. Itaque exercitationem tempora omnis aliquid
-              labore, fugiat amet aut ipsam sit est aspernatur totam cumque.
-              Ipsam praesentium placeat consectetur ullam consequatur repellat
-              unde veritatis cupiditate sunt dignissimos, quaerat, aperiam quo
-              ex aspernatur.
-            </p>
+            <p>Result</p>
           </div>
           <button class="btn btn-copy">Copiar</button>
         </div>
@@ -68,11 +63,25 @@
     <footer>
       <div class="footer-group">
         <hr />
-        Developed by
-        <a href="https://github.com/Jo-varo"> (Agregar logo)Jo-Varo </a>
+        Developed by -
+        <div class="author-credits">
+          <a href="https://github.com/Jo-varo" target="_blank">
+            <img src="assets/github.svg" alt="github logo">
+            Jo-Varo
+          </a>
+        </div>
+        <div class="author-credits">
+          <a
+            href="https://www.linkedin.com/in/jorge-vargas-382a47270/"
+            target="_blank"
+          >
+          <img src="assets/logo-linkedin.svg" alt="linkedin logo">
+            Jorge Vargas
+          </a>
+        </div>
       </div>
     </footer>
-    <script type="module" src="logic.js"></script>
-    <script type="module" src="helpers.js"></script>
+    <script type="module" src="js/logic.js"></script>
+    <script type="module" src="js/helpers.js"></script>
   </body>
 </html>
