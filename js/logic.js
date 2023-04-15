@@ -1,68 +1,9 @@
 import { encrypter, decrypter } from './helpers.js';
-
-
-//TODO: delete logs to console
-
-const textStatus = {
-  valid: 'valid-text',
-  invalid: 'invalid-text',
-  empty: 'empty-text',
-};
-
-const textStates = {
-  'valid-text': {
-    value: true,
-    userMsg: 'Texto valido',
-  },
-  'invalid-text': {
-    value: false,
-    userMsg: 'Escribe texto válido cumpliendo las condiciones',
-  },
-  'empty-text': {
-    value: false,
-    userMsg: 'Escribe algunas palabras para encriptarlas',
-  },
-};
+import { getText } from './handlingText.js';
 
 const stopSubmit = () => {
   const form = document.querySelector('form');
   form.onsubmit = (e) => e.preventDefault();
-};
-
-// Functions managing texts
-const checkText = (text = '') => {
-  //Avoid "catastrophic backtracking"
-  if (!text) return textStatus['empty'];
-  const newText = cleanText(text);
-  if (!newText) return textStatus['empty'];
-  const myRegex = /^[a-z]+$/;
-  const words = newText.split(/\s+/);
-  for (const word of words) {
-    if (word && !myRegex.test(word)) return textStatus['invalid'];
-  }
-  return textStatus['valid'];
-};
-
-const cleanText = (text = '') => {
-  let newText = text.split(/\s+/).filter((elm) => elm != '');
-  return newText.join(' ');
-};
-
-const getText = () => {
-  const text = document.querySelector('textarea').value;
-  const resultCheckText = checkText(text);
-  const isValidText = textStates[resultCheckText].value;
-  if (isValidText) {
-    return cleanText(text);
-  } else {
-    if (resultCheckText === textStatus['invalid']) {
-      alert(textStates[resultCheckText].userMsg);
-    }
-    if (resultCheckText === textStatus['empty']) {
-      alert(textStates[resultCheckText].userMsg);
-    }
-    return false;
-  }
 };
 
 // Interacting with DOM elements
@@ -102,10 +43,16 @@ const hideStartResult = () => {
   const startResult = document.getElementById('start-result');
   const result = document.getElementById('result');
 
-  startResult.classList = ['d-none'];
-  result.classList = [''];
-  // console.log(startResult.classList);
-  // console.log(result.classList);
+  startResult.classList.add('hide-start-result');
+
+  setTimeout(() => {
+    startResult.classList.add('d-none');
+    result.classList.remove('d-none');
+  }, 500);
+
+  setTimeout(() => {
+    result.classList.add('show-result');
+  }, 750);
 };
 
 // Button events
@@ -143,7 +90,7 @@ const clickBtnCopy = (e) => {
 
   btnCopy.innerText = 'Copiado';
   btnCopy.disabled = true;
-  btnCopy.classList.add('copied')
+  btnCopy.classList.add('copied');
 
   setTimeout(() => {
     btnCopy.innerText = 'Copiar';
